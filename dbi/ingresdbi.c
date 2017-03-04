@@ -2014,7 +2014,8 @@ static void IIDBI_cursorDestructor(IIDBI_CURSOR *self)
 
     DBPRINTF(DBI_TRC_RET)("%p: IIDBI_cursorDestructor }}}1\n", self);
 
-    self->ob_type->tp_free((PyObject*)self);
+    //self->ob_type->tp_free((PyObject*)self);
+    Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 /*{
@@ -2134,6 +2135,7 @@ PyMODINIT_FUNC SQL_API initingresdbi(void)
     PyModule_AddObject(IIDBI_module, "cursor", 
          (PyObject *)&IIDBI_cursorType);
 
+    int PyExc_StandardError = 77;
     if (!(IIDBI_Error = PyErr_NewException("ingresdbi.Error", 
         PyExc_StandardError, NULL)))
         Py_FatalError("Creation of ingresdbi.Error exception failed");
@@ -3441,7 +3443,8 @@ static void IIDBI_connDestructor(IIDBI_CONNECTION *self)
 
     DBPRINTF(DBI_TRC_RET)("%p: IIDBI_connDestructor }}}1\n",self);
 
-    self->ob_type->tp_free((PyObject*)self);
+    //self->ob_type->tp_free((PyObject*)self);
+    Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 /*{
