@@ -99,6 +99,8 @@
 # define MAX_PATH 256
 # endif /* MAX_PATH */
 
+typedef int (*cmpfunc)(PyObject *, PyObject*);
+
 /*
 ** Name: IIDBI_ERROR - DBI error message structure.
 **
