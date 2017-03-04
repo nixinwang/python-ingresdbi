@@ -153,7 +153,7 @@ except ImportError:
 """
     
 if len(sys.argv) <= 1:
-    print """
+    print("""
 Suggested setup.py parameters:
 
     * build
@@ -161,7 +161,7 @@ Suggested setup.py parameters:
     * sdist
     * bdist_wininst
 
-"""
+""")
 
 # Normal setup.py functions for platform/version packaging
 
@@ -172,7 +172,7 @@ class TestSuite(Command):
     def finalize_options(self):
         pass
     def run(self):
-        print 'About to start test suite'
+        print('About to start test suite')
         import subprocess
         test_scriptname = os.path.join('tests', 'test_ingresdbi_dbapi20.py')
         errno = subprocess.call([sys.executable, test_scriptname])
@@ -185,7 +185,7 @@ platform=sys.platform
 setup some variables to for Ingres stuff cannot use plain env vars in python variables.
 """
 if os.path.expandvars("$II_SYSTEM") == "$II_SYSTEM":
-    raise SystemExit, "Operating system variable II_SYSTEM must be set."
+    raise SystemExit("Operating system variable II_SYSTEM must be set.")
 assert(os.path.expandvars("$II_SYSTEM") != '$II_SYSTEM')
 ii_system=os.path.expandvars("$II_SYSTEM")
 ii_system_files=ii_system+"/ingres/files"
@@ -204,7 +204,7 @@ if os.path.exists(dest_html) and os.path.getmtime(dest_html) < os.path.getmtime(
     os.unlink(dest_html)
 
 if not os.path.exists(dest_html) and publish_cmdline:
-    print 'creating %s' % dest_html
+    print('creating %s' % dest_html)
     publish_cmdline(writer_name='html',
                         argv=[
                                 '--initial-header-level=2',
